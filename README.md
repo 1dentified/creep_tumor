@@ -8,6 +8,7 @@ Bock Bock|Bock Bock
 --------- ---------
 
 ##Hardware Setup
+
 Basic setup includes the use of 4 hard drives used for two separate volumes created by the raid controller as follows.
 
    - Ensure all 4 hard drives are in the server.
@@ -18,4 +19,12 @@ Basic setup includes the use of 4 hard drives used for two separate volumes crea
    - Create Creep_Tumor volume with 2 hard drives and raid 1
    - Initialize both volumes.
    - Insert Win 10 DVD into server and reboot, booting to DVD drive.
-   - Follow through.
+   - Follow the Windows 10 setup only to the select a volume window.
+      - In this window select the each raid volume you created and click format.
+      - When complete with formating each drive reboot the server and remove the Win10 DVD
+   - Insert the ESXi 6.7u1 bootable CD and boot to DVD drive.
+   - Follow ESXI installation instructions.
+
+## Network Configuration
+
+
