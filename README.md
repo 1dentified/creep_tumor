@@ -26,5 +26,17 @@ Basic setup includes the use of 4 hard drives used for two separate volumes crea
    - Follow ESXI installation instructions.
 
 ## Network Configuration
+On the Switch
+   - On the l3 switch create the internal VLAN and VLAN interface for the esxi managment network.
+      >conf t 
+      >
+      
+   - Configure the trunk port for vmnic0 or the connected vmnic you will be using for the vmk0 managment int on the ESXi
+      >
+      
+
+On the ESXi
+   - vSwitch0 will automatically assign the vmnic that is plugged in as well as vmk0 to vSwitch0
+   - ESXi managment ip needs to be set to an internal IP of your choosing and assign the corret vlan #
 
 
