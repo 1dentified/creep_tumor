@@ -4,7 +4,9 @@
 Select any server that is capable of support 2 or more virtual machines and at least 2 physical nics.
 Recommended hardware components:
 
-Bock Bock|Bock Bock
+   - 4 CPUs
+   - 
+
 --------- ---------
 
 ##Hardware Setup
