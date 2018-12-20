@@ -26,17 +26,41 @@ Basic setup includes the use of 4 hard drives used for two separate volumes crea
    - Follow ESXI installation instructions.
 
 ## Network Configuration
-On the Switch
-   - On the l3 switch create the internal VLAN and VLAN interface for the esxi managment network.
-      >conf t 
-      >
+For the rest of the instructions we will be using the following placeholders:
+   - Management VLAN: 10
+   - Server VLAN: 20 **This should be an existing server VLAN within your network
+   - Native Trunking VLAN: 999
+
+On the Switch/Router
+   - On the Layer 3 Switch or Router create the internal VLAN and VLAN interface for the esxi managment network.
+      ```
+      RTR(config)#interface Vlan 10 
+      RTR(config-if)#description ESXI Management
+      RTR(config-if)#ip address x.x.x.x
+      ```
       
    - Configure the trunk port for vmnic0 or the connected vmnic you will be using for the vmk0 managment int on the ESXi
-      >
+      ```
+      RTR(config)#interface [port#/#]
+      RTR(config-if)#description Creep Tumor Management
+      RTR(config-if)#switchport
+      RTR(config-if)#switchport mode trunk
+      RTR(config-if)#switchport trunk native vlan 999
+      RTR(config-if)#switchport trunk allowed vlan 10
+      ```
       
+   - Configure the trunk port for the connected vmnic you will be using for the servers
+      ```
+      RTR(config)#interface [port#/#]
+      RTR(config-if)#description Creep Tumor Management
+      RTR(config-if)#switchport
+      RTR(config-if)#switchport mode trunk
+      RTR(config-if)#switchport trunk native vlan 999
+      RTR(config-if)#switchport trunk allowed vlan 20
+      ```
 
-On the ESXi
-   - vSwitch0 will automatically assign the vmnic that is plugged in as well as vmk0 to vSwitch0
-   - ESXi managment ip needs to be set to an internal IP of your choosing and assign the corret vlan #
+   - On the ESXi
+      - vSwitch0 will automatically assign the vmnic that is plugged in as well as vmk0 to vSwitch0
+      - ESXi managment ip needs to be set to an internal IP of your choosing and assigned to VLAN 10
 
 
